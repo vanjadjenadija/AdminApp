@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class AdminDAO {
     private static final ConnectionPool connectionPool = ConnectionPool.getConnectionPool();
 
-    private static final String SELECT_ADMIN = "SELECT * FROM admin WHERE role='SUPPORT' and username=? and password=?";
+    private static final String SELECT_ADMIN = "SELECT * FROM admin WHERE role='ADMIN' and username=? and password=?";
 
     private AdminDAO() {
     }
