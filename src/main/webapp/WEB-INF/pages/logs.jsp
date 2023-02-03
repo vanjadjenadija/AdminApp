@@ -39,62 +39,52 @@
     </div>
 </nav>
 <main role="main" class="container">
-    <div class="container">
-        <br>
-        <h1>Logs</h1>
-        <br>
-        <table id="example" class="table table-striped" style="width:100%">
-            <caption>Logs</caption>
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Message</th>
-                <th scope="col">Level</th>
-                <th scope="col">Date/Time</th>
-                <th scope="col">Logger</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (Log log : logBean.getAll()) { %>
-            <tr>
-                <td>
-                    <%=log.getId()%>
-                </td>
-                <td>
-                    <%=log.getMessage()%>
-                </td>
-                <td>
-                    <%=log.getLevel()%>
-                </td>
-                <td>
-                    <%=log.getDateTime()%>
-                </td>
-                <td>
-                    <%=log.getLogger()%>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary view-button"
-                            onclick="location.href='message.jsp?id=<%=log.getId()%>'"><i class="fa fa-eye"></i>
-                        &nbsp;View
-                    </button>
-                </td>
-            </tr>
-            <% } %>
+    <br>
+    <h1>Logs</h1>
+    <br>
+    <table id="example" class="table table-striped" style="width:100%">
+        <caption>Logs</caption>
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Message</th>
+            <th scope="col">Level</th>
+            <th scope="col">Date/Time</th>
+            <th scope="col">Logger</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (Log log : logBean.getAll()) { %>
+        <tr>
+            <td>
+                <%=log.getId()%>
+            </td>
+            <td>
+                <%=log.getMessage()%>
+            </td>
+            <td>
+                <%=log.getLevel()%>
+            </td>
+            <td>
+                <%=log.getDateTime()%>
+            </td>
+            <td>
+                <%=log.getLogger()%>
+            </td>
+        </tr>
+        <% } %>
 
-            </tbody>
-            <tfoot>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">Message</th>
-                <th scope="col">Level</th>
-                <th scope="col">Date/Time</th>
-                <th scope="col">Logger</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Message</th>
+            <th scope="col">Level</th>
+            <th scope="col">Date/Time</th>
+            <th scope="col">Logger</th>
+        </tr>
+        </tfoot>
+    </table>
 </main>
 </body>
 </html>

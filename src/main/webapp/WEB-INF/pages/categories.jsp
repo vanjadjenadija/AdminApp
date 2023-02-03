@@ -42,7 +42,11 @@
     <div class="container">
         <br>
         <h1>Categories</h1>
-        <br>
+        <button type="button" class="btn btn-success" onclick="location.href='?action=addCategory'">
+            <span class="fa fa-plus"></span>
+            Add new category
+        </button>
+        <hr>
         <table id="example" class="table table-striped" style="width:100%">
             <caption>Categories</caption>
             <thead>
@@ -66,10 +70,18 @@
                     <%=category.getParentCategoryId()%>
                 </td>
                 <td>
-                    <button type="button" class="btn btn-primary view-button"
-                            onclick="location.href='message.jsp?id=<%=category.getId()%>'"><i class="fa fa-eye"></i>
-                        &nbsp;View
-                    </button>
+                    <div class="d-flex flex-row mb-3">
+                        <div>
+                            <button type="button" class="btn" onclick="location.href='?action=updateCategory'">
+                                <span class="fa fa-pencil text-warning"></span>
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="btn" onclick="location.href='?action=deleteCategory'">
+                                <span class="fa fa-trash text-danger"></span>
+                            </button>
+                        </div>
+                    </div>
                 </td>
             </tr>
             <% } %>

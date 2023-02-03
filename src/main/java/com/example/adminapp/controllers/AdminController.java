@@ -51,7 +51,7 @@ public class AdminController extends HttpServlet {
                 session.setAttribute("logBean", logBean);
                 session.setAttribute("userBean", userBean);
                 session.setAttribute("categoryBean", categoryBean);
-                address = LOGS;
+                address = USERS;
             } else {
                 session.setAttribute("notification", "Invalid credentials.");
             }

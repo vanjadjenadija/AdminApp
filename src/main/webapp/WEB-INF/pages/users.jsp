@@ -16,6 +16,7 @@
         $(document).ready(function () {
             $('#example').DataTable();
         });
+
     </script>
 </head>
 <body>
@@ -39,84 +40,95 @@
     </div>
 </nav>
 <main role="main" class="container">
-    <div class="container">
-        <br>
-        <h1>Users</h1>
-        <br>
-        <table id="example" class="table table-striped" style="width:100%">
-            <caption>Users</caption>
-            <thead>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Username</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Phone number</th>
-                <th scope="col">City</th>
-                <th scope="col">Avatar URL</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% for (User user : userBean.getAll()) { %>
-            <tr>
-                <td>
-                    <%=user.getId()%>
-                </td>
-                <td>
-                    <%=user.getFirstName()%>
-                </td>
-                <td>
-                    <%=user.getLastName()%>
-                </td>
-                <td>
-                    <%=user.getUsername()%>
-                </td>
-                <td>
-                    <%=user.getEmail()%>
-                </td>
-                <td>
-                    <%=user.getPhoneNumber()%>
-                </td>
-                <td>
-                    <%=user.getCity()%>
-                </td>
-                <td>
-                    <% if (user.getAvatarUrl() != null && !user.getAvatarUrl().isBlank()) { %>
-                    <img src="<%=user.getAvatarUrl()%>" width="16" height="16" alt="Avatar"/>
-                    <%}%>
-                </td>
-                <td>
-                    <%=user.getStatus()%>
-                </td>
-                <td>
-                    <button type="button" class="btn btn-primary view-button"
-                            onclick="location.href='message.jsp?id=<%=user.getId()%>'"><i class="fa fa-eye"></i>
-                        &nbsp;View
-                    </button>
-                </td>
-            </tr>
-            <% } %>
+    <br>
+    <h1>Users</h1>
+    <button type="button" class="btn btn-success" onclick="location.href='?action=addUser'">
+        <span class="fa fa-plus"></span>
+        Add new user
+    </button>
+    <hr>
+    <table id="example" class="table table-striped" style="width:100%">
+        <caption>Users</caption>
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Username</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">City</th>
+            <th scope="col">Avatar URL</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% for (User user : userBean.getAll()) { %>
+        <tr>
+            <td>
+                <%=user.getId()%>
+            </td>
+            <td>
+                <%=user.getFirstName()%>
+            </td>
+            <td>
+                <%=user.getLastName()%>
+            </td>
+            <td>
+                <%=user.getUsername()%>
+            </td>
+            <td>
+                <%=user.getEmail()%>
+            </td>
+            <td>
+                <%=user.getPhoneNumber()%>
+            </td>
+            <td>
+                <%=user.getCity()%>
+            </td>
+            <td>
+                <% if (user.getAvatarUrl() != null && !user.getAvatarUrl().isBlank()) { %>
+                <img src="<%=user.getAvatarUrl()%>" width="16" height="16" alt="Avatar"/>
+                <%}%>
+            </td>
+            <td>
+                <%=user.getStatus()%>
+            </td>
+            <td>
+                <div class="d-flex flex-row mb-3">
+                    <div>
+                        <button type="button" class="btn" onclick="location.href='?action=updateUser'">
+                            <span class="fa fa-pencil text-warning"></span>
+                        </button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn" onclick="location.href='?action=deleteUser'">
+                            <span class="fa fa-trash text-danger"></span>
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <% } %>
 
-            </tbody>
-            <tfoot>
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Username</th>
-                <th scope="col">E-mail</th>
-                <th scope="col">Phone number</th>
-                <th scope="col">City</th>
-                <th scope="col">Avatar URL</th>
-                <th scope="col">Status</th>
-                <th scope="col">Actions</th>
-            </tr>
-            </tfoot>
-        </table>
-    </div>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Username</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">City</th>
+            <th scope="col">Avatar URL</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </tfoot>
+    </table>
+
 </main>
 </body>
 </html>
