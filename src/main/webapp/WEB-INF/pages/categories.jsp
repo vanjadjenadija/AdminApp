@@ -19,25 +19,7 @@
     </script>
 </head>
 <body>
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <a class="navbar-brand" href="?action=logs" style="margin-left: 10px">Admin application</a>
-    <div class="container d-flex flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="?action=users">Users</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?action=categories">Categories</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="?action=logs">Logs</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="?action=sign-out">Sign out</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<%@include file="header.jsp"%>
 <main role="main" class="container">
     <div class="container">
         <br>
