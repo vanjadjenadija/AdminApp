@@ -1,7 +1,9 @@
 package com.example.adminapp.controllers;
 
 import com.example.adminapp.beans.AdminBean;
+import com.example.adminapp.beans.CategoryBean;
 import com.example.adminapp.beans.LogBean;
+import com.example.adminapp.beans.UserBean;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +17,6 @@ import java.io.IOException;
 @WebServlet(name = "adminController", value = "/admin-controller")
 public class AdminController extends HttpServlet {
     private static final String SIGN_IN = "/WEB-INF/pages/sign-in.jsp";
-    private static final String HOME = "/WEB-INF/pages/home.jsp";
     private static final String ERROR = "/WEB-INF/pages/error.jsp";
     private static final String USERS = "/WEB-INF/pages/users.jsp";
     private static final String CATEGORIES = "/WEB-INF/pages/categories.jsp";
@@ -45,7 +46,11 @@ public class AdminController extends HttpServlet {
             if (adminBean.login(username, password)) {
                 session.setAttribute("adminBean", adminBean);
                 LogBean logBean = new LogBean();
+                UserBean userBean = new UserBean();
+                CategoryBean categoryBean = new CategoryBean();
                 session.setAttribute("logBean", logBean);
+                session.setAttribute("userBean", userBean);
+                session.setAttribute("categoryBean", categoryBean);
                 address = LOGS;
             } else {
                 session.setAttribute("notification", "Invalid credentials.");
