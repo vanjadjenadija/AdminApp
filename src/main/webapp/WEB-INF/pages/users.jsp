@@ -80,7 +80,8 @@
             <td>
                 <div class="d-flex flex-row mb-3">
                     <div>
-                        <button type="button" class="btn" onclick="location.href='?action=update-user'">
+                        <button type="button" class="btn"
+                                onclick="location.href='?action=update-user&id=<%=user.getId()%>'">
                             <span class="fa fa-pencil text-warning"></span>
                         </button>
                     </div>

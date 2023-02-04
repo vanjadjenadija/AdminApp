@@ -10,6 +10,8 @@ import java.util.List;
 
 public class UserBean implements Serializable {
 
+    private User user;
+
     public List<User> getAll() {
         return UserDAO.getAll();
     }
@@ -24,5 +26,17 @@ public class UserBean implements Serializable {
 
     public boolean addUser(User user){
         return UserDAO.insert(user);
+    }
+
+    public boolean update(User user) {
+        return UserDAO.updateUser(user);
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -22,6 +22,7 @@ public class AdminController extends HttpServlet {
     private static final String ERROR = "/WEB-INF/pages/error.jsp";
     private static final String USERS = "/WEB-INF/pages/users.jsp";
     private static final String ADD_USER = "/WEB-INF/pages/add-user.jsp";
+    private static final String UPDATE_USER = "/WEB-INF/pages/update-user.jsp";
     private static final String CATEGORIES = "/WEB-INF/pages/categories.jsp";
     private static final String LOGS = "/WEB-INF/pages/logs.jsp";
 
@@ -76,6 +77,23 @@ public class AdminController extends HttpServlet {
                                     request.getParameter("email"), request.getParameter("phoneNumber"),
                                     request.getParameter("city"), request.getParameter("avatar"), UserStatus.ACTIVE.name());
                             if (userBean.addUser(user)) {
+                                address = USERS;
+                            }
+                        }
+                        break;
+                    case "update-user":
+                        address = UPDATE_USER;
+                        int updateId = Integer.parseInt(request.getParameter("id"));
+                        User updateUser = userBean.getById(updateId);
+                        userBean.setUser(updateUser);
+
+                        if (request.getParameter("submit") != null) {
+                            System.err.println("update");
+                            User user = new User(updateId, request.getParameter("firstName"), request.getParameter("lastName"),
+                                    request.getParameter("username"), request.getParameter("password"),
+                                    request.getParameter("email"), request.getParameter("phoneNumber"),
+                                    request.getParameter("city"), request.getParameter("avatar"), UserStatus.ACTIVE.name());
+                            if (userBean.update(user)) {
                                 address = USERS;
                             }
                         }
