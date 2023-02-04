@@ -4,6 +4,8 @@ import com.example.adminapp.beans.AdminBean;
 import com.example.adminapp.beans.CategoryBean;
 import com.example.adminapp.beans.LogBean;
 import com.example.adminapp.beans.UserBean;
+import com.example.adminapp.models.User;
+import com.example.adminapp.models.enums.UserStatus;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,6 +21,7 @@ public class AdminController extends HttpServlet {
     private static final String SIGN_IN = "/WEB-INF/pages/sign-in.jsp";
     private static final String ERROR = "/WEB-INF/pages/error.jsp";
     private static final String USERS = "/WEB-INF/pages/users.jsp";
+    private static final String ADD_USER = "/WEB-INF/pages/add-user.jsp";
     private static final String CATEGORIES = "/WEB-INF/pages/categories.jsp";
     private static final String LOGS = "/WEB-INF/pages/logs.jsp";
 
@@ -60,8 +63,19 @@ public class AdminController extends HttpServlet {
             if (adminBean == null || !adminBean.isLoggedIn()) {
                 address = SIGN_IN;
             } else {
+                UserBean userBean = (UserBean) session.getAttribute("userBean");
                 switch (action) {
                     case "users":
+                        address = USERS;
+                        break;
+                    case "add-user":
+                        address = ADD_USER;
+                        break;
+                    case "delete-user":
+                        int id = Integer.parseInt(request.getParameter("id"));
+                        User user = userBean.getById(id);
+                        user.setStatus(UserStatus.INACTIVE.name());
+                        userBean.changeStatus(user);
                         address = USERS;
                         break;
                     case "categories":

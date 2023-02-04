@@ -13,4 +13,12 @@ public class UserBean implements Serializable {
     public List<User> getAll() {
         return UserDAO.getAll();
     }
+
+    public User getById(int id){
+        return UserDAO.getById(id);
+    }
+
+    public void changeStatus(User user) {
+        UserDAO.changeMessageStatus(user.getId(), user.getStatus());
+    }
 }

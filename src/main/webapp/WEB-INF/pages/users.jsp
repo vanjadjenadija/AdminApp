@@ -20,11 +20,11 @@
     </script>
 </head>
 <body>
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <main role="main" class="container">
     <br>
     <h1>Users</h1>
-    <button type="button" class="btn btn-success" onclick="location.href='?action=addUser'">
+    <button type="button" class="btn btn-success" onclick="location.href='?action=add-user'">
         <span class="fa fa-plus"></span>
         Add new user
     </button>
@@ -80,12 +80,13 @@
             <td>
                 <div class="d-flex flex-row mb-3">
                     <div>
-                        <button type="button" class="btn" onclick="location.href='?action=updateUser'">
+                        <button type="button" class="btn" onclick="location.href='?action=update-user'">
                             <span class="fa fa-pencil text-warning"></span>
                         </button>
                     </div>
                     <div>
-                        <button type="button" class="btn" onclick="location.href='?action=deleteUser'">
+                        <button type="button" class="btn"
+                                onclick="location.href='?action=delete-user&id=<%=user.getId()%>'">
                             <span class="fa fa-trash text-danger"></span>
                         </button>
                     </div>
