@@ -70,6 +70,15 @@ public class AdminController extends HttpServlet {
                         break;
                     case "add-user":
                         address = ADD_USER;
+                        if (request.getParameter("submit") != null) {
+                            User user = new User(0, request.getParameter("firstName"), request.getParameter("lastName"),
+                                    request.getParameter("username"), request.getParameter("password"),
+                                    request.getParameter("email"), request.getParameter("phoneNumber"),
+                                    request.getParameter("city"), request.getParameter("avatar"), UserStatus.ACTIVE.name());
+                            if (userBean.addUser(user)) {
+                                address = USERS;
+                            }
+                        }
                         break;
                     case "delete-user":
                         int id = Integer.parseInt(request.getParameter("id"));

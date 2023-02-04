@@ -1,6 +1,7 @@
 package com.example.adminapp.dao;
 
 import com.example.adminapp.models.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,9 @@ public class UserDAO {
     private static final String SELECT_ALL = "SELECT * from user";
     private static final String SELECT_BY_ID = "SELECT * FROM user u WHERE u.id=?";
     private static final String UPDATE_STATUS = "UPDATE user u SET status=? WHERE u.id=?";
+    private static final String INSERT = "INSERT INTO user (first_name, last_name, username, password, email, phone_number, city, avatar_url, status) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    private static BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     private UserDAO() {
     }
@@ -69,7 +73,7 @@ public class UserDAO {
         return users.get(0);
     }
 
-    public static void changeMessageStatus(Integer id, String status) {
+    public static void updateUserStatus(Integer id, String status) {
         Connection connection = null;
 
         try {
@@ -84,5 +88,30 @@ public class UserDAO {
         } finally {
             connectionPool.checkIn(connection);
         }
+    }
+
+    public static boolean insert(User user) {
+        Connection connection = null;
+        boolean result = false;
+        try {
+            connection = connectionPool.checkOut();
+            PreparedStatement preparedStatement = DAOUtil.prepareStatement(connection, INSERT, false);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getUsername());
+            preparedStatement.setString(4, passwordEncoder.encode(user.getPassword()));
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getPhoneNumber());
+            preparedStatement.setString(7, user.getCity());
+            preparedStatement.setString(8, user.getAvatarUrl());
+            preparedStatement.setString(9, user.getStatus());
+            result = preparedStatement.executeUpdate() == 1;
+            preparedStatement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            connectionPool.checkIn(connection);
+        }
+        return result;
     }
 }

@@ -19,6 +19,10 @@ public class UserBean implements Serializable {
     }
 
     public void changeStatus(User user) {
-        UserDAO.changeMessageStatus(user.getId(), user.getStatus());
+        UserDAO.updateUserStatus(user.getId(), user.getStatus());
+    }
+
+    public boolean addUser(User user){
+        return UserDAO.insert(user);
     }
 }
