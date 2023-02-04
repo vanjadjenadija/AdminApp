@@ -34,4 +34,13 @@ public class Category {
     public void setParentCategoryId(Integer parentCategoryId) {
         this.parentCategoryId = parentCategoryId;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", parentCategoryId=" + parentCategoryId +
+                '}';
+    }
 }

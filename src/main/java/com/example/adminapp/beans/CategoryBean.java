@@ -22,6 +22,14 @@ public class CategoryBean implements Serializable {
         return CategoryDAO.update(updateCategory);
     }
 
+    public boolean addCategory(Category category) {
+        return CategoryDAO.insert(category);
+    }
+
+    public Category getByName(String name){
+        return CategoryDAO.getByName(name);
+    }
+
     public Category getCategory() {
         return category;
     }

@@ -26,6 +26,7 @@ public class AdminController extends HttpServlet {
     private static final String UPDATE_USER = "/WEB-INF/pages/update-user.jsp";
     private static final String CATEGORIES = "/WEB-INF/pages/categories.jsp";
     private static final String UPDATE_CATEGORY = "/WEB-INF/pages/update-category.jsp";
+    private static final String ADD_CATEGORY = "/WEB-INF/pages/add-category.jsp";
     private static final String LOGS = "/WEB-INF/pages/logs.jsp";
 
     public AdminController() {
@@ -119,6 +120,21 @@ public class AdminController extends HttpServlet {
                         if (request.getParameter("submit") != null) {
                             Category category = new Category(updateCategoryId, request.getParameter("name"), updateCategory.getParentCategoryId());
                             if (categoryBean.update(category)) {
+                                address = CATEGORIES;
+                            }
+                        }
+                        break;
+                    case "add-category":
+                        address = ADD_CATEGORY;
+                        if (request.getParameter("submit") != null) {
+                            String selectedParent = request.getParameter("parentCategory");
+                            Integer parentId = null;
+                            if (!selectedParent.equals("No parent category")) {
+                                Category parentCategory = categoryBean.getByName(request.getParameter("parentCategory"));
+                                parentId = parentCategory.getId();
+                            }
+                            Category category = new Category(0, request.getParameter("name"), parentId);
+                            if (categoryBean.addCategory(category)) {
                                 address = CATEGORIES;
                             }
                         }
