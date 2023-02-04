@@ -4,6 +4,7 @@ import com.example.adminapp.beans.AdminBean;
 import com.example.adminapp.beans.CategoryBean;
 import com.example.adminapp.beans.LogBean;
 import com.example.adminapp.beans.UserBean;
+import com.example.adminapp.models.Category;
 import com.example.adminapp.models.User;
 import com.example.adminapp.models.enums.UserStatus;
 import jakarta.servlet.RequestDispatcher;
@@ -24,6 +25,7 @@ public class AdminController extends HttpServlet {
     private static final String ADD_USER = "/WEB-INF/pages/add-user.jsp";
     private static final String UPDATE_USER = "/WEB-INF/pages/update-user.jsp";
     private static final String CATEGORIES = "/WEB-INF/pages/categories.jsp";
+    private static final String UPDATE_CATEGORY = "/WEB-INF/pages/update-category.jsp";
     private static final String LOGS = "/WEB-INF/pages/logs.jsp";
 
     public AdminController() {
@@ -65,6 +67,7 @@ public class AdminController extends HttpServlet {
                 address = SIGN_IN;
             } else {
                 UserBean userBean = (UserBean) session.getAttribute("userBean");
+                CategoryBean categoryBean = (CategoryBean) session.getAttribute("categoryBean");
                 switch (action) {
                     case "users":
                         address = USERS;
@@ -88,7 +91,6 @@ public class AdminController extends HttpServlet {
                         userBean.setUser(updateUser);
 
                         if (request.getParameter("submit") != null) {
-                            System.err.println("update");
                             User user = new User(updateId, request.getParameter("firstName"), request.getParameter("lastName"),
                                     request.getParameter("username"), request.getParameter("password"),
                                     request.getParameter("email"), request.getParameter("phoneNumber"),
@@ -107,6 +109,19 @@ public class AdminController extends HttpServlet {
                         break;
                     case "categories":
                         address = CATEGORIES;
+                        break;
+                    case "update-category":
+                        address = UPDATE_CATEGORY;
+                        int updateCategoryId = Integer.parseInt(request.getParameter("id"));
+                        Category updateCategory = categoryBean.getById(updateCategoryId);
+                        categoryBean.setCategory(updateCategory);
+
+                        if (request.getParameter("submit") != null) {
+                            Category category = new Category(updateCategoryId, request.getParameter("name"), updateCategory.getParentCategoryId());
+                            if (categoryBean.update(category)) {
+                                address = CATEGORIES;
+                            }
+                        }
                         break;
                     case "logs":
                         address = LOGS;

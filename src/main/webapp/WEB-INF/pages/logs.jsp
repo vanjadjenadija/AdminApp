@@ -1,6 +1,7 @@
 <%@page import="com.example.adminapp.beans.LogBean" %>
 <%@page import="com.example.adminapp.models.Log" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="error.jsp" %>
 <jsp:useBean id="logBean" type="com.example.adminapp.beans.LogBean" scope="session"/>
 <!doctype html>
 <html lang="en">

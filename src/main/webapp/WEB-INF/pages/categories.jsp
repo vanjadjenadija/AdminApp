@@ -1,6 +1,7 @@
 <%@ page import="com.example.adminapp.beans.CategoryBean" %>
 <%@ page import="com.example.adminapp.models.Category" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="error.jsp" %>
 <jsp:useBean id="categoryBean" type="com.example.adminapp.beans.CategoryBean" scope="session"/>
 <!doctype html>
 <html lang="en">
@@ -19,12 +20,12 @@
     </script>
 </head>
 <body>
-<%@include file="header.jsp"%>
+<%@include file="header.jsp" %>
 <main role="main" class="container">
     <div class="container">
         <br>
         <h1>Categories</h1>
-        <button type="button" class="btn btn-success" onclick="location.href='?action=addCategory'">
+        <button type="button" class="btn btn-success" onclick="location.href='?action=add-category'">
             <span class="fa fa-plus"></span>
             Add new category
         </button>
@@ -34,7 +35,7 @@
             <thead>
             <tr>
                 <th scope="col">Id</th>
-                <th scope="col">Name</th>
+                <th scope="col" style="width: 50%">Name</th>
                 <th scope="col">Parent Category Id</th>
                 <th scope="col">Actions</th>
             </tr>
@@ -49,17 +50,21 @@
                     <%=category.getName()%>
                 </td>
                 <td>
-                    <%=category.getParentCategoryId()%>
+                    <% if (category.getParentCategoryId() != 0) {%>
+                    <%=category.getParentCategoryId() %>
+                    <%}%>
                 </td>
                 <td>
                     <div class="d-flex flex-row mb-3">
                         <div>
-                            <button type="button" class="btn" onclick="location.href='?action=updateCategory'">
+                            <button type="button" class="btn"
+                                    onclick="location.href='?action=update-category&id=<%=category.getId()%>'">
                                 <span class="fa fa-pencil text-warning"></span>
                             </button>
                         </div>
                         <div>
-                            <button type="button" class="btn" onclick="location.href='?action=deleteCategory'">
+                            <button type="button" class="btn"
+                                    onclick="location.href='?action=delete-category&id=<%=category.getId()%>'">
                                 <span class="fa fa-trash text-danger"></span>
                             </button>
                         </div>

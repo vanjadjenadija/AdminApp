@@ -10,8 +10,7 @@
     <meta name="author" content="">
     <title>Sign in</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <link href="styles/style.css" rel="stylesheet">
 </head>
 

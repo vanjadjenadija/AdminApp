@@ -1,6 +1,7 @@
 <%@ page import="com.example.adminapp.models.User" %>
 <%@ page import="com.example.adminapp.beans.UserBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="error.jsp" %>
 <jsp:useBean id="userBean" type="com.example.adminapp.beans.UserBean" scope="session"/>
 <!doctype html>
 <html lang="en">
@@ -15,7 +16,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <link href="styles/user.css" rel="stylesheet">
+    <link href="styles/forms.css" rel="stylesheet">
 </head>
 <body>
 <%@include file="header.jsp" %>

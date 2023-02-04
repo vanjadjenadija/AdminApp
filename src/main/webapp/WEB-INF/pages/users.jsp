@@ -1,6 +1,7 @@
 <%@ page import="com.example.adminapp.models.User" %>
 <%@ page import="com.example.adminapp.beans.UserBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page errorPage="error.jsp" %>
 <jsp:useBean id="userBean" type="com.example.adminapp.beans.UserBean" scope="session"/>
 <!doctype html>
 <html lang="en">
