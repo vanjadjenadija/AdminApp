@@ -30,6 +30,10 @@ public class CategoryBean implements Serializable {
         return CategoryDAO.getByName(name);
     }
 
+    public void delete(int categoryId){
+        CategoryDAO.delete(categoryId);
+    }
+
     public Category getCategory() {
         return category;
     }

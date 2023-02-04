@@ -139,6 +139,11 @@ public class AdminController extends HttpServlet {
                             }
                         }
                         break;
+                    case "delete-category":
+                        int categoryId = Integer.parseInt(request.getParameter("id"));
+                        categoryBean.delete(categoryId);
+                        address = CATEGORIES;
+                        break;
                     case "logs":
                         address = LOGS;
                         break;

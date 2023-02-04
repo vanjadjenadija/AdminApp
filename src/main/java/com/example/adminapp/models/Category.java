@@ -11,6 +11,9 @@ public class Category {
         this.parentCategoryId = parentCategoryId;
     }
 
+    public Category() {
+    }
+
     public Integer getId() {
         return id;
     }
